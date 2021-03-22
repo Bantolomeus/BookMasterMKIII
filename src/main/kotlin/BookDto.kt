@@ -11,3 +11,4 @@ data class DBook(
     override val pages: Long,
     override val coverUrl: String
 ): Book
+
