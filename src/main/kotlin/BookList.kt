@@ -5,25 +5,21 @@ import react.dom.p
 
 external interface BookListProps: RProps {
     var books: List<Book>
-}
-
-external interface BookListState: RState {
     var selectedBook: Book?
+    var onSelectedBook: (Book) -> Unit
 }
 
 @JsExport
-class BookList: RComponent<BookListProps, BookListState>() {
+class BookList: RComponent<BookListProps, RState>() {
     override fun RBuilder.render() {
         for (book in props.books) {
             p {
                 attrs {
                     onClickFunction = {
-                        setState {
-                            selectedBook = book
-                        }
+                        props.onSelectedBook(book)
                     }
                 }
-                if (book == state.selectedBook) {
+                if (book == props.selectedBook) {
                     +"▶ "
                 }
                 +"${book.title}, with ${book.pages} pages and written by ${book.author}"

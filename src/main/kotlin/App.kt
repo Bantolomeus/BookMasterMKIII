@@ -17,8 +17,12 @@ val toReadBooks = listOf(
     DBook("Beyonders a World without Heroes", "Brandon Mull", 454, "https://upload.wikimedia.org/wikipedia/en/8/84/BeyondersAWorldWithoutHeroes.jpg")
 )
 
+external interface AppState: RState {
+    var currentBook: Book?
+}
+
 @JsExport
-class App : RComponent<RProps, RState>() {
+class App : RComponent<RProps, AppState>() {
 
     override fun RBuilder.render() {
         h1 { +"Hello BookMaster user."
@@ -28,6 +32,12 @@ class App : RComponent<RProps, RState>() {
             }
             bookList {
                 books = finishedBooks
+                selectedBook = state.currentBook
+                onSelectedBook = { book ->
+                    setState {
+                        currentBook = book
+                    }
+                }
             }
 //            child(BookList::class) {
 //                attrs.books = finishedBooks
@@ -37,6 +47,12 @@ class App : RComponent<RProps, RState>() {
             }
             bookList {
                 books = toReadBooks
+                selectedBook = state.currentBook
+                onSelectedBook = { book ->
+                    setState {
+                        currentBook = book
+                    }
+                }
             }
 //            child(BookList::class) {
 //                attrs.books = toReadBooks
