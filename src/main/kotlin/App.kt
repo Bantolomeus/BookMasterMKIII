@@ -3,24 +3,14 @@ import react.dom.*
 import styled.styledDiv
 
 
-//val finishedBooks = listOf(
-//    DBook("Fablehaven", "Brandon Mull", 359, "https://upload.wikimedia.org/wikipedia/en/0/08/Fablehaven.jpg"),
-//    DBook("Fablehaven Rise of the Evening Star", "Brandon Mull", 441, "https://upload.wikimedia.org/wikipedia/en/3/31/Fablehaven_Rise_of_the_Evening_Star.jpg"),
-//    DBook("Fablehaven Grip of the Shadow Plague", "Brandon Mull", 487, "https://upload.wikimedia.org/wikipedia/en/2/29/Fablehaven_Grip_of_the_Shadow_Plague.jpg"),
-//    DBook("Fablehaven Secrets of the Dragon Sanctuary", "Brandon Mull", 535, "https://upload.wikimedia.org/wikipedia/en/5/58/Fablehaven_Secrets_of_the_Dragon_Sanctuary.jpg"),
-//    DBook("Fablehaven Keys to the Demon Prison", "Brandon Mull", 593, "https://upload.wikimedia.org/wikipedia/en/e/ef/Fablehaven_Keys_to_the_Demon_Prison.jpg")
-//)
-//
-//val unreadBooks = listOf(
-//    DBook("Beyonders a World without Heroes", "Brandon Mull", 454, "https://upload.wikimedia.org/wikipedia/en/8/84/BeyondersAWorldWithoutHeroes.jpg")
-//)
-
 external interface AppState: RState {
     var currentBook: Book?
     var unreadBooks: List<Book>
     var finishedBooks: List<Book>
 }
 
+@Suppress("NON_EXPORTABLE_TYPE")
+@ExperimentalJsExport
 @JsExport
 class App : RComponent<RProps, AppState>() {
 
@@ -86,7 +76,8 @@ class App : RComponent<RProps, AppState>() {
                 }
             }
         }
-        styledDiv {  }
+        styledDiv {
+        }
     }
 }
 

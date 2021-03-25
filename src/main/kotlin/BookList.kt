@@ -1,7 +1,12 @@
-import kotlinx.browser.window
+import kotlinx.css.Cursor
+import kotlinx.css.cursor
 import kotlinx.html.js.onClickFunction
-import react.*
-import react.dom.p
+import react.RBuilder
+import react.RComponent
+import react.RProps
+import react.RState
+import styled.css
+import styled.styledP
 
 external interface BookListProps: RProps {
     var books: List<Book>
@@ -13,7 +18,10 @@ external interface BookListProps: RProps {
 class BookList: RComponent<BookListProps, RState>() {
     override fun RBuilder.render() {
         for (book in props.books) {
-            p {
+            styledP {
+                css {
+                    cursor = Cursor.pointer
+                }
                 attrs {
                     onClickFunction = {
                         props.onSelectedBook(book)
