@@ -1,12 +1,11 @@
+import kotlinext.js.jsObject
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import react.RProps
+import kotlinx.html.js.onClickFunction
+import react.*
 import react.dom.h1
 import react.dom.li
 import react.dom.ul
-import react.functionalComponent
-import react.useEffect
-import react.useState
 
 private val scope = MainScope()
 
@@ -27,7 +26,26 @@ val App = functionalComponent<RProps> { _ ->
             li {
                 key = item.toString()
                 +"[${item.priority}] ${item.desc} "
+
+                attrs.onClickFunction = {
+                    scope.launch {
+                        deleteShoppingListItem(item)
+                        setShoppingList(getShoppingList())
+                    }
+                }
             }
         }
     }
+    child(
+        InputComponent,
+        props = jsObject {
+            onSubmit = { input ->
+                val cartItem = ShoppingListItem(input.replace("!", ""), input.count { it == '!' })
+                scope.launch {
+                    addShoppingListItem(cartItem)
+                    setShoppingList(getShoppingList())
+                }
+            }
+        }
+    )
 }
