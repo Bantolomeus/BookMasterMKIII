@@ -10,7 +10,8 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main() {
-    embeddedServer(Netty, 8081) {
+    val port = System.getenv("PORT")?.toInt() ?: 8081
+    embeddedServer(Netty, port) {
 
         val shoppingList = mutableListOf(
             ShoppingListItem("Cucumbers 🥒", 1),
