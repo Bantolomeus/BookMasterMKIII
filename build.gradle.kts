@@ -10,14 +10,14 @@ plugins {
     kotlin("plugin.serialization") version "1.4.0"
 }
 
-group = "com.bantolomeus"
-version = "0.1"
+group = "org.example"
+version = "1.0-SNAPSHOT"
 
 repositories {
     maven { setUrl("https://dl.bintray.com/kotlin/kotlin-eap") }
-    maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
     mavenCentral()
     jcenter()
+    maven("https://kotlin.bintray.com/kotlin-js-wrappers/") // react, styled, ...
 }
 
 kotlin {
@@ -63,15 +63,10 @@ kotlin {
                 implementation("io.ktor:ktor-client-json-js:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization-js:$ktorVersion")
 
-                implementation("org.jetbrains:kotlin-react:17.0.1-pre.148-kotlin-1.4.21")
-                implementation("org.jetbrains:kotlin-react-dom:17.0.1-pre.148-kotlin-1.4.21")
-                implementation(npm("react", "17.0.1"))
-                implementation(npm("react-dom", "17.0.1"))
-
-                implementation("org.jetbrains:kotlin-styled:5.2.1-pre.148-kotlin-1.4.21")
-                implementation(npm("styled-components", "~5.2.1"))
-
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+                implementation("org.jetbrains:kotlin-react:16.13.1-pre.110-kotlin-1.4.0")
+                implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.110-kotlin-1.4.0")
+                implementation(npm("react", "16.13.1"))
+                implementation(npm("react-dom", "16.13.1"))
             }
         }
     }

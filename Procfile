@@ -1,1 +1,1 @@
-web: ./build/install/BookMasterMKIII/bin/BookMasterMKIII
+web: ./build/install/bookmaster/bin/bookmaster

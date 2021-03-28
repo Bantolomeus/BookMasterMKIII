@@ -10,15 +10,14 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main() {
-    val port = System.getenv("PORT")?.toInt() ?: 8081
+    embeddedServer(Netty, 8081) {
 
-    val shoppingList = mutableListOf(
-        ShoppingListItem("Cucumbers \uD83E\uDD52", 1),
-        ShoppingListItem("Tomatoes \uD83C\uDF45", 2),
-        ShoppingListItem("Orange Juice \uD83C\uDF4A", 3)
-    )
+        val shoppingList = mutableListOf(
+            ShoppingListItem("Cucumbers 🥒", 1),
+            ShoppingListItem("Tomatoes 🍅", 2),
+            ShoppingListItem("Orange Juice 🍊", 3)
+        )
 
-    embeddedServer(Netty, port) {
         install(ContentNegotiation) {
             json()
         }
@@ -31,7 +30,17 @@ fun main() {
         install(Compression) {
             gzip()
         }
+
         routing {
+            get("/") {
+                call.respondText(
+                    this::class.java.classLoader.getResource("index.html")!!.readText(),
+                    ContentType.Text.Html
+                )
+            }
+            static("/") {
+                resources("")
+            }
             route(ShoppingListItem.path) {
                 get {
                     call.respond(shoppingList)
@@ -42,22 +51,10 @@ fun main() {
                 }
                 delete("/{id}") {
                     val id = call.parameters["id"]?.toInt() ?: error("Invalid delete request")
-                    shoppingList.removeIf { it.id == id}
+                    shoppingList.removeIf { it.id == id }
                     call.respond(HttpStatusCode.OK)
                 }
             }
-            route("/") {
-                get {
-                    call.respondText(
-                        this::class.java.classLoader.getResource("index.html")!!.readText(),
-                        ContentType.Text.Html
-                    )
-                }
-                static {
-                    resource("")
-                }
-            }
-
         }
     }.start(wait = true)
 }
