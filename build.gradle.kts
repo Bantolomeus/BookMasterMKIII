@@ -2,7 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.gradle.jvm.tasks.Jar
 
-val kotlinVersion = "1.4.0"
+val kotlinVersion = "1.4.31"
 val serializationVersion = "1.0.0-RC"
 val ktorVersion = "1.4.0"
 
@@ -21,6 +21,7 @@ repositories {
     mavenCentral()
     jcenter()
     maven("https://kotlin.bintray.com/kotlin-js-wrappers/") // react, styled, ...
+    maven("http://dl.bintray.com/mbuhot/maven")
 }
 
 kotlin {
@@ -38,7 +39,7 @@ kotlin {
                 implementation(kotlin("stdlib-common"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
-//                implementation("com.github.jengelman.gradle.plugins:shadow:6.1.0")
+                implementation("mbuhot:eskotlin:0.7.0")
             }
         }
         val commonTest by getting {

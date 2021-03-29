@@ -26,3 +26,21 @@ suspend fun addShoppingListItem(shoppingListItem: ShoppingListItem) {
 suspend fun deleteShoppingListItem(shoppingListItem: ShoppingListItem) {
     jsonClient.delete<Unit>(endpoint + ShoppingListItem.path + "/${shoppingListItem.id}")
 }
+
+
+
+
+suspend fun getBookList(): List<BookListItem> {
+    return jsonClient.get(endpoint + BookListItem.path)
+}
+
+suspend fun addBookListItem(bookListItem: BookListItem) {
+    jsonClient.post<Unit>(endpoint + BookListItem.path) {
+        contentType(ContentType.Application.Json)
+        body = bookListItem
+    }
+}
+
+suspend fun deleteBookListItem(bookListItem: BookListItem) {
+    jsonClient.delete<Unit>(endpoint + BookListItem.path + "/${bookListItem.id}")
+}

@@ -19,6 +19,10 @@ fun main() {
             ShoppingListItem("Orange Juice 🍊", 3)
         )
 
+        val bookList = mutableListOf(
+            BookListItem("Ensel und Krete", "Walter Moers", 255, 255, "04/02/2018", 0)
+        )
+
         install(ContentNegotiation) {
             json()
         }
@@ -42,17 +46,17 @@ fun main() {
             static("/") {
                 resources("")
             }
-            route(ShoppingListItem.path) {
+            route(BookListItem.path) {
                 get {
-                    call.respond(shoppingList)
+                    call.respond(bookList)
                 }
                 post {
-                    shoppingList += call.receive<ShoppingListItem>()
+                    bookList += call.receive<BookListItem>()
                     call.respond(HttpStatusCode.OK)
                 }
                 delete("/{id}") {
                     val id = call.parameters["id"]?.toInt() ?: error("Invalid delete request")
-                    shoppingList.removeIf { it.id == id }
+                    bookList.removeIf { it.id == id }
                     call.respond(HttpStatusCode.OK)
                 }
             }
