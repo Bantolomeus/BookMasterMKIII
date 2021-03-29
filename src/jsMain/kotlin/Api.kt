@@ -28,8 +28,6 @@ suspend fun deleteShoppingListItem(shoppingListItem: ShoppingListItem) {
 }
 
 
-
-
 suspend fun getBookList(): List<BookListItem> {
     return jsonClient.get(endpoint + BookListItem.path)
 }

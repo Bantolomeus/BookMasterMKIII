@@ -13,6 +13,8 @@ fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8081
     embeddedServer(Netty, port) {
 
+        val repo = BookRepository()
+
         val shoppingList = mutableListOf(
             ShoppingListItem("Cucumbers 🥒", 1),
             ShoppingListItem("Tomatoes 🍅", 2),
@@ -48,7 +50,8 @@ fun main() {
             }
             route(BookListItem.path) {
                 get {
-                    call.respond(bookList)
+                    call.respond(repo.getBooks())
+//                    call.respond(bookList)
                 }
                 post {
                     bookList += call.receive<BookListItem>()

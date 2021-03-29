@@ -40,6 +40,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("mbuhot:eskotlin:0.7.0")
+                implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0")
             }
         }
         val commonTest by getting {
