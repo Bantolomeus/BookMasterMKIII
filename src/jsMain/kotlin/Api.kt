@@ -27,7 +27,6 @@ suspend fun deleteShoppingListItem(shoppingListItem: ShoppingListItem) {
     jsonClient.delete<Unit>(endpoint + ShoppingListItem.path + "/${shoppingListItem.id}")
 }
 
-
 suspend fun getBookList(): List<BookListItem> {
     return jsonClient.get(endpoint + BookListItem.path)
 }
@@ -41,4 +40,8 @@ suspend fun addBookListItem(bookListItem: BookListItem) {
 
 suspend fun deleteBookListItem(bookListItem: BookListItem) {
     jsonClient.delete<Unit>(endpoint + BookListItem.path + "/${bookListItem.id}")
+}
+
+suspend fun getBookUpdateList(): List<BookUpdateItem> {
+    return jsonClient.get(endpoint + BookUpdateItem.path)
 }
