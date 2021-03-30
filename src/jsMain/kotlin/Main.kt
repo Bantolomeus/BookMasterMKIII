@@ -6,4 +6,7 @@ fun main() {
     render(document.getElementById("root")) {
         child(App)
     }
+    render(document.getElementById("updates")) {
+        child(UpdateView)
+    }
 }

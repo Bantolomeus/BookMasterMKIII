@@ -11,12 +11,12 @@ private val scope = MainScope()
 
 val App = functionalComponent<RProps> { _ ->
     val (bookList, setBookList) = useState(emptyList<BookListItem>())
-    val (bookUpdateList, setBookUpdateList) = useState(emptyList<BookUpdateItem>())
+//    val (bookUpdateList, setBookUpdateList) = useState(emptyList<BookUpdateItem>())
 
     useEffect(dependencies = listOf()) {
         scope.launch {
             setBookList(getBookList())
-            setBookUpdateList(getBookUpdateList())
+//            setBookUpdateList(getBookUpdateList())
         }
     }
 
@@ -51,17 +51,17 @@ val App = functionalComponent<RProps> { _ ->
 //            }
 //        }
     }
-    h1 {
-        +"All book updates"
-    }
-    ul {
-        bookUpdateList.sortedByDescending(BookUpdateItem::pagesRead).forEach { item ->
-            li {
-                key = item.toString()
-                +"${item.name}, ${item.date}, ${item.pagesRead}"
-            }
-        }
-    }
+//    h1 {
+//        +"All book updates"
+//    }
+//    ul {
+//        bookUpdateList.sortedByDescending(BookUpdateItem::pagesRead).forEach { item ->
+//            li {
+//                key = item.toString()
+//                +"${item.name}, ${item.date}, ${item.pagesRead}"
+//            }
+//        }
+//    }
 
     child(
         InputComponent,

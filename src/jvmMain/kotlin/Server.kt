@@ -16,12 +16,6 @@ fun main() {
         val bookRepo = BookRepository()
         val updateRepo = BookUpdatesRepository()
 
-        val shoppingList = mutableListOf(
-            ShoppingListItem("Cucumbers 🥒", 1),
-            ShoppingListItem("Tomatoes 🍅", 2),
-            ShoppingListItem("Orange Juice 🍊", 3)
-        )
-
         val bookList = mutableListOf(
             BookListItem("Ensel und Krete", "Walter Moers", 255, 255, "04/02/2018", 0)
         )
@@ -47,6 +41,15 @@ fun main() {
                 )
             }
             static("/") {
+                resources("")
+            }
+            get("/bookUpdates") {
+                call.respondText(
+                    this::class.java.classLoader.getResource("updates.html")!!.readText(),
+                    ContentType.Text.Html
+                )
+            }
+            static("/bookUpdates") {
                 resources("")
             }
             route(BookUpdateItem.path) {
