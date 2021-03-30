@@ -19,6 +19,8 @@ val UpdateView = functionalComponent<RProps> { _ ->
         }
     }
 
+
+
     h1 {
         +"All book updates"
     }
